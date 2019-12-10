@@ -1,112 +1,93 @@
-// var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
-$(document).ready( function() {
-    $('#recipices').on('change',function () {
-        var recipes = $('#recipices').val();
-        chooseRecipe(recipes);
-    } );
+function getUrl() {
+    var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
+    return url;
+}
+
+$(document).ready(function () {
+    requestApi();
+    //catch value
+
+    $('#recipe').on('change', () => {
+        var recipes = $('#recipe').val();
+        // console.log(recipes);
+        //call function
+        getRecipe(recipes);
+    })
 });
 
-// choose recipe from select [arrow function]
-var chooseRecipe = (myRecipe) => {
-    var onlyNumber = parseInt(myRecipe);
-    switch(onlyNumber) {
-        case 1:
-            getData()
-            break;
-        case 0:
-            getValue();
-            break;
+function requestApi() {
+    $.ajax({
+        dataType: 'json',
+        url: getUrl(),
+        success: (data) => chooseRecipe(data.recipes),
+        error: () => console.log("Cannot get data"),
+    });
+}
 
-    }
-} 
 
-function getData(){
-    var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
-   $.ajax({
-       dataType : 'json',
-       url : url,
-       success : function (data){
-           var result = "";
-           data.recipes.forEach(element =>{
-                if(element.id ==1){
-                    result +=`
-                        ${element.name}
-                        <img src="${element.iconUrl}" width="80">
-                    `;
-                }
-                $('#result').html(result);
+var allData = [];
+function chooseRecipe(recipe) {
+    allData = recipe;
+    var option = "";
+    recipe.forEach(item => {
+        //console.log(item)
+        option += `<option value="${item.id}">${item.name}</option>`;
+    });
+    $('#recipe').append(option);
+}
+function getRecipe(id) {
+    //     console.log(recipeId);
 
-                // get ingreditent
+    allData.forEach(item => {
+        //console.log(item);
 
-                var ingreditent = "";
-                data.recipes.forEach(element =>{
-                   element.ingredients.forEach(item =>{
-                       if(element.id ==1){
-                        ingreditent+=`
-                            <tr>
-                                 ${element.name}
-                                <td> <img src="${item.iconUrl}" width="70" class="img-fluid"></td>
-                                <td>${item.quantity}</td>
-                                <td>${item.unit[0]}</td>
-                                <td> ${item.name}</td>
-                            </tr>
-                            
-                        `;
-                       }
-                       $('#ingredien').html(ingreditent);
-                   });
-                });
-               
-           });
-       }
-   });
+        if (item.id == id) {
+            // console.log(item);
+            //showRecipe(),
+            showRecipe(item.name, item.iconUrl);
+            //showIngredient(),
+            showIngredient(item.ingredients);
+            //showStep()...
+        }
+    });
+}
 
+function showRecipe(name, img) {
+    var result = "";
+    result += `
+        <tr>
+            <td> ${name} </td>
+            <td> <img src="${img}" class="img-fluid" width="180px"> </td>
+        </tr>
+     `;
+
+    $('#recipe-result').html(result);
+}
+
+function showIngredient(ing){
+     var ingredients = " ";
+    ing.forEach(element => {
+        //console.log(item);
+         ingredients += `
+        <tr>
+            <td> <img src="${element.iconUrl}" width="80" class="img-fluid"></td>
+            <td>${element.quantity}</td>
+            <td>${element.unit[0]}</td>
+            <td> ${element.name}</td>
+        </tr>
+      `;
+    }); 
+     $('#ingredien').html(ingredients);
 }
 
 
 
 
 
-function getValue(){
-    var url = "https://raw.githubusercontent.com/radytrainer/test-api/master/test.json";
-   $.ajax({
-       dataType : 'json',
-       url : url,
-       success : function (data){
-           var result = "";
-           data.recipes.forEach(element =>{
-                if(element.id ==0){
-                    result +=`
-                        ${element.name}
-                        <img src="${element.iconUrl}" width="80">
-                    `;
-                }
-                $('#result').html(result);
 
-                // get ingreditent
 
-                var ingreditent = "";
-                data.recipes.forEach(element =>{
-                   element.ingredients.forEach(item =>{
-                       if(element.id ==0){
-                        ingreditent+=`
-                            <tr>
-                                 ${element.name}
-                                <td> <img src="${item.iconUrl}" width="70" class="img-fluid"></td>
-                                <td>${item.quantity}</td>
-                                <td>${item.unit[0]}</td>
-                                <td> ${item.name}</td>
-                            </tr>
-                            
-                        `;
-                       }
-                       $('#ingredien').html(ingreditent);
-                   });
-                });
-               
-           });
-       }
-   });
 
-}
+
+
+
 
