@@ -48,6 +48,7 @@ function getRecipe(id) {
             //showIngredient(),
             showIngredient(item.ingredients);
             //showStep()...
+            getInstruction(item);
         }
     });
 }
@@ -56,12 +57,12 @@ function showRecipe(name, img) {
     var result = "";
     result += `
         <tr>
-            <td> ${name} </td>
-            <td> <img src="${img}" class="img-fluid" width="180px"> </td>
+            <td><h2>${name}</h2></td>
+            <td> <img src="${img}" class="img-fluid" width="500px"> </td>
         </tr>
      `;
 
-    $('#recipe-result').html(result);
+    $('#recipe-data').html(result);
 }
 
 function showIngredient(ing){
@@ -70,7 +71,7 @@ function showIngredient(ing){
         //console.log(item);
          ingredients += `
         <tr>
-            <td> <img src="${element.iconUrl}" width="80" class="img-fluid"></td>
+            <td> <img src="${element.iconUrl}" width="100" class="img-fluid"></td>
             <td>${element.quantity}</td>
             <td>${element.unit[0]}</td>
             <td> ${element.name}</td>
@@ -81,6 +82,20 @@ function showIngredient(ing){
 }
 
 
+      //Step
+      function getInstruction(element) {
+       const{instructions} = element;
+        var instruction = "";
+        var step = instructions.split("<step>");
+        for(let k =1; k<step.length; k++){
+            instruction += `
+                <h4 class="text-info">step ${k}:</h4>
+                ${step[k]}
+            `;
+        }
+
+        $('#step').html(instruction);
+    }      
 
 
 
