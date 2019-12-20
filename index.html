@@ -8,55 +8,72 @@
     <title>Projcet jQuery</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-
+    <style>
+        .ruler {
+            border-left: 1px solid blue;
+            height: 50%;
+            position: absolute;
+            left: 50%;
+        }
+    </style>
 <body>
     <div class="container mt-5">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-                <select id="recipe" class="form-control">
+                <select id="chooseRecipe" class="form-control">
                     <option value="" disabled selected>Choose Recipe...</option>
                 </select>
-                <hr>
-                <h1 class="display-1" text-center></h1>
             </div>
             <div class="col-3"></div>
         </div>
     </div>
 
-    <!-- Show recipe -->
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <table class="table table-borderless" id="recipe-data"></table>
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <table class="table table-borderless" id="result"></table>
+                </div>
+                <div class="col-4"></div>
             </div>
-            <div class="col-4"></div>
         </div>
-    </div>
-
-        <!-- ingredien -->
+        </div>
     <div class="container mt-5">
-        <div class="row">
-           <div class="col-6">
-                <table class="table table-borderless" id="ingredien"></table>
-           </div>
-           <div class="col-6">
-            <p id="step"></p>
-           </div>
-           
-        </div>
-    </div>
-
-    <!-- <div class="container float-left">
         <div class="row">
             <div class="col-3"></div>
             <div class="col-6">
-               
+                
+                <div class="input-group mb-3" id="show-number">
+                        <h4>Number of Person &nbsp; &nbsp;</h4>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="minus">&minus;</button>
+                        </div>
+                        <input type="text" class="form-control text-center" disabled id="member" value="1">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button" id="add">&plus;</button>
+                        </div>
+                    </div>
+
+                <div class="col-3"></div>
             </div>
-            <div class="col-3"></div>
         </div>
-    </div> -->
+
+        <div class="container mt-5">
+            <div class="text-center ruler" id="ruler"></div>
+            <div class="row">
+                <div class="col-6">
+                    <table id="ingredients" class="table table-borderless"></table>
+                </div>
+                <div class="col-6">
+                    <p id="step"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row" id="result"></div>
+        </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/project.js"></script>
