@@ -27,6 +27,8 @@ $(document).ready(function () {
        
         newIngredient(recipe, guest);
     });
+
+    
 });
 
 // function for query API
@@ -51,6 +53,12 @@ function getRecipse(data) {
     $("#chooseRecipe").append(option);
     $('#ruler').hide();
     $('#show-number').hide();
+    $('#step').hide();
+    $("#a").hide();
+    $('#b').hide();
+    
+
+    
 }
 // variable for get old Guest
 var getQuanlity = [];
@@ -63,11 +71,13 @@ function chooseRecipses(item) {
     var result = "";
     result += `
        <tr>
-          <td> <h4>${name}</h4></td>
+          <td> <h4 class="text-white">${name}</h4></td>
           <td><img src="${iconUrl}" style="width:250px; height:170px"></td> 
        </tr> 
     `;
     $("#result").html(result);
+
+
 }
 
 function recipesId(chooseRecipse) {
@@ -81,15 +91,16 @@ function recipesId(chooseRecipse) {
             getInstruction(item);
             //updateIngredien
           $('#member').val(item.nbGuests);
+             //get OldGuest
           oldGuest = $('#member').val();
-            //get OldGuest
+           
         }
         
     });
 }
 function getIngrediants(item) {
     var result = "";
-    item.ingredients.forEach(element => {
+       item.ingredients.forEach(element => {
         const { name, quantity, unit, iconUrl } = element;
         result += `
             <tr>
@@ -101,10 +112,12 @@ function getIngrediants(item) {
         `;
     });
     $("#ingredients").html(result);
+    $("#a").show();
     $('#ruler').show();
     $('#show-number').show();
-
+  
 }
+
 function newIngredient(chooseRecipse,guest) {
 
     allData.forEach(item => {
@@ -118,13 +131,11 @@ function newIngredient(chooseRecipse,guest) {
             getInstruction(item);
             //updateIngredien
             $('#member').val(guest);
-            //get OldGuest
+
         }
     });
 }
 // get ingredients in recipse name
-
-// function for new quanlity
 
 var updateIngredient = (ing,guest) => {
  
@@ -136,14 +147,16 @@ var updateIngredient = (ing,guest) => {
        <tr>
            <td><img src = "${element.iconUrl}" width = "50"></td>
       
-           <td >${add}</td>
-           <td >${element.unit[0]}</td>
-           <td >${element.name}</td>
+           <td class="text-white" >${add}</td>
+           <td class="text-white" >${element.unit[0]}</td>
+           <td class="text-white" >${element.name}</td>
          
        </tr>
      `
     })
     $('#ingredients').html(ingredient);
+
+
 } 
 
 
@@ -154,15 +167,19 @@ function getInstruction(item) {
     var step = instructions.split("<step>");
     for (let k = 1; k < step.length; k++) {
         instruction += `
-      <h5 class="text-primary">step ${k}:</h5>
+      <h5 class="text-white">step ${k}:</h5>
              ${step[k]}
         `;
     }
     // diplay instruction
     $('#step').html(instruction);
+    $('#step').show();  
+    $('#b').show(); 
+    
+
 }
 
-//increase and decrement
+//increase  
 function increase() {
     var member = $('#member').val();
     var guest = parseInt(member) + 1;
@@ -171,6 +188,7 @@ function increase() {
     }
 }
 
+//decrement
 function decrease() {
     var member = $('#member').val();
     var guest = parseInt(member) - 1;

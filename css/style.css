@@ -1,0 +1,31 @@
+body {
+    background-image: url('https://www.bbcgoodfood.com/sites/default/files/guide/guide-image/2013/06/balanced-diet-for-women-main-image-700-350.jpg');
+    background-size: cover;
+}
+.ruler {
+   border-left: 1px solid rgb(68, 0, 255);
+   height: 52%;
+   position: absolute;
+   left: 50%;
+}
+#ingredients{
+background-color: rgb(205, 63, 129);
+border: 5px solid rgb(77, 241, 56);
+
+}
+#step{
+   background-color: rgb(205, 63, 129);
+   border: 5px solid rgb(77, 241, 56);
+
+}
+#show-number{
+   background-color: rgb(205, 63, 129);
+   border: 5px solid rgb(77, 241, 56);
+   color: #ffff;
+}
+#a{
+   color: rgb(72, 25, 240);
+}
+#b{
+   color: rgb(72, 25, 240);
+}
