@@ -22,6 +22,7 @@ border: 5px solid rgb(77, 241, 56);
    background-color: rgb(205, 63, 129);
    border: 5px solid rgb(77, 241, 56);
    color: #ffff;
+   box-shadow:  2px 6px 21px 2px rgba(0,0,0,0.80);
 }
 #a{
    color: rgb(72, 25, 240);
@@ -33,7 +34,7 @@ border: 5px solid rgb(77, 241, 56);
 marquee{
    display: list-item;
    font-weight: bold;
-   color: rgb(36, 236, 18);
+   color: rgb(241, 247, 233);
 }
 
 #chooseRecipe{
