@@ -16,16 +16,16 @@ $(document).ready(function () {
 
     $('#minus').on('click', function () {
         decrease();
-        var guest = $('#member').val();//old member 4 it will decrease when we click on -
+        var customer = $('#people').val();//old people 4 it will decrease when we click on -
         var recipe = $('#chooseRecipe').val();//id from select
-        newIngredient(recipe, guest);
+        newIngredient(recipe, customer);
     });
     $('#add').on('click', function () {
         increase();
-        var guest = $('#member').val();//old member 4 it will increase when  we click on +
+        var customer = $('#people').val();//old people 4 it will increase when  we click on +
         var recipe = $('#chooseRecipe').val();
 
-        newIngredient(recipe, guest);
+        newIngredient(recipe, customer);
     });
 });
 
@@ -54,6 +54,7 @@ function getRecipse(data) {
     $('#step').hide();
     $("#a").hide();
     $('#b').hide();
+    $('#marquee').hide();
 
 
 
@@ -88,9 +89,9 @@ function recipesId(chooseRecipse) {
             // get instruction
             getInstruction(item);
             //updateIngredien
-            $('#member').val(item.nbGuests);
+            $('#people').val(item.nbGuests);
             //get OldGuest
-            oldGuest = $('#member').val();
+            oldGuest = $('#people').val();
 
         }
 
@@ -128,19 +129,19 @@ function newIngredient(chooseRecipse, guest) {
             // get instruction
             getInstruction(item);
             //updateIngredien
-            $('#member').val(guest);
+            $('#people').val(guest);
 
         }
     });
 }
 // get ingredients in recipse name
 
-var updateIngredient = (ing, guest) => {
+var updateIngredient = (ing, customer) => {
 
     var ingredient = "";
     ing.forEach(element => {
 
-        var add = element.quantity * parseInt(guest) / oldGuest;
+        var add = element.quantity * parseInt(customer) / oldGuest;
         ingredient += `
        <tr>
            <td><img src = "${element.iconUrl}" width = "50"></td>
@@ -171,25 +172,27 @@ function getInstruction(item) {
     $('#step').html(instruction);
     $('#step').show();
     $('#b').show();
+    $('#marquee').show();
+
 
 
 }
 
 //increase  
 function increase() {
-    var member = $('#member').val();
-    var guest = parseInt(member) + 1;
-    if (guest <= 15) {
-        $('#member').val(guest);
+    var people = $('#people').val();
+    var customer = parseInt(people) + 1;
+    if (customer <= 15) {
+        $('#people').val(customer);
     }
 }
 
 //decrement
 function decrease() {
-    var member = $('#member').val();
-    var guest = parseInt(member) - 1;
-    if (guest >= 1) {
-        $('#member').val(guest);
+    var people = $('#people').val();
+    var customer = parseInt(people) - 1;
+    if (customer >= 1) {
+        $('#people').val(customer);
     }
 }
 
