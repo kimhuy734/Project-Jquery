@@ -16,19 +16,17 @@ $(document).ready(function () {
 
     $('#minus').on('click', function () {
         decrease();
-        var guest = $('#member').val();//old member 4 it will decrease when click -
+        var guest = $('#member').val();//old member 4 it will decrease when we click on -
         var recipe = $('#chooseRecipe').val();//id from select
         newIngredient(recipe, guest);
     });
     $('#add').on('click', function () {
         increase();
-        var guest = $('#member').val();//old member 4 it will increase when click +
+        var guest = $('#member').val();//old member 4 it will increase when  we click on +
         var recipe = $('#chooseRecipe').val();
-       
+
         newIngredient(recipe, guest);
     });
-
-    
 });
 
 // function for query API
@@ -56,9 +54,9 @@ function getRecipse(data) {
     $('#step').hide();
     $("#a").hide();
     $('#b').hide();
-    
 
-    
+
+
 }
 // variable for get old Guest
 var getQuanlity = [];
@@ -90,17 +88,17 @@ function recipesId(chooseRecipse) {
             // get instruction
             getInstruction(item);
             //updateIngredien
-          $('#member').val(item.nbGuests);
-             //get OldGuest
-          oldGuest = $('#member').val();
-           
+            $('#member').val(item.nbGuests);
+            //get OldGuest
+            oldGuest = $('#member').val();
+
         }
-        
+
     });
 }
 function getIngrediants(item) {
     var result = "";
-       item.ingredients.forEach(element => {
+    item.ingredients.forEach(element => {
         const { name, quantity, unit, iconUrl } = element;
         result += `
             <tr>
@@ -115,18 +113,18 @@ function getIngrediants(item) {
     $("#a").show();
     $('#ruler').show();
     $('#show-number').show();
-  
+
 }
 
-function newIngredient(chooseRecipse,guest) {
+function newIngredient(chooseRecipse, guest) {
 
     allData.forEach(item => {
         if (item.id == chooseRecipse) {
             // choose recipses 
             chooseRecipses(item);
             // get ingredients in recipse name
-            updateIngredient(item.ingredients,guest);
-              
+            updateIngredient(item.ingredients, guest);
+
             // get instruction
             getInstruction(item);
             //updateIngredien
@@ -137,13 +135,13 @@ function newIngredient(chooseRecipse,guest) {
 }
 // get ingredients in recipse name
 
-var updateIngredient = (ing,guest) => {
- 
+var updateIngredient = (ing, guest) => {
+
     var ingredient = "";
     ing.forEach(element => {
-  
-       var add = element.quantity *parseInt(guest) /oldGuest;
-       ingredient += `
+
+        var add = element.quantity * parseInt(guest) / oldGuest;
+        ingredient += `
        <tr>
            <td><img src = "${element.iconUrl}" width = "50"></td>
       
@@ -155,9 +153,7 @@ var updateIngredient = (ing,guest) => {
      `
     })
     $('#ingredients').html(ingredient);
-
-
-} 
+}
 
 
 // get instruction
@@ -173,9 +169,9 @@ function getInstruction(item) {
     }
     // diplay instruction
     $('#step').html(instruction);
-    $('#step').show();  
-    $('#b').show(); 
-    
+    $('#step').show();
+    $('#b').show();
+
 
 }
 
